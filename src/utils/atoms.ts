@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { CollectionProducts as Product } from "./types";
 import { atomWithStorage } from "jotai/utils";
 
-interface CartAtom {
+export interface CartAtom {
   product: Product;
   quantity: number;
 }

@@ -44,3 +44,14 @@ export interface Order {
   orderItems: OrderItem[];
   createdAt: string;
 }
+
+export interface CreateOrder {
+  user_name: string;
+  user_phone: string;
+  total: number;
+  order_items: {
+    product_id: string;
+    quantity: number;
+    total_price: number;
+  }[];
+}

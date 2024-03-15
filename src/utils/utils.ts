@@ -7,3 +7,9 @@ export const getUnit = (unit: string) => {
    }
    return "x 1";
 };
+
+
+export const isStoreOpen = () => {
+  const today = new Date().getDay();
+  return today === 1 || today === 4;
+}
