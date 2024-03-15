@@ -1,0 +1,24 @@
+name: hdt-pr
+
+on: pull_request
+
+jobs:
+  app2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Format check
+        run: yarn format:check

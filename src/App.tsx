@@ -1,4 +1,3 @@
-import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Routes } from "./routes/Routes";
 import { Navbar } from "./components/Navbar";
@@ -10,15 +9,15 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter(Routes);
 
 export const App = () => {
-  return (
-    <JotaiProvider>
-      <QueryClientProvider client={queryClient}>
-        <div className="mx-auto px-3 lg:px-12">
-          <Navbar />
-          <RouterProvider router={router} />
-          <Footer />
-        </div>
-      </QueryClientProvider>
-    </JotaiProvider>
-  );
+	return (
+		<JotaiProvider>
+			<QueryClientProvider client={queryClient}>
+				<div className="mx-auto px-3 lg:px-12">
+					<Navbar />
+					<RouterProvider router={router} />
+					<Footer />
+				</div>
+			</QueryClientProvider>
+		</JotaiProvider>
+	);
 };
