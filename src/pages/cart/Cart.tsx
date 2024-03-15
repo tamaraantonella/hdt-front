@@ -17,8 +17,8 @@ export const Cart = () => {
           />
         ))}
       </div>
-      <div className="sticky bottom-0 mt-5 top-auto z-99 flex flex-col lg:flex-row lg:items-center lg:justify-end gap-2 h-fit bg-white border border-gray-600 lg:bg-gray-500/20 rounded-lg w-full mb-9 p-5">
-        <div className="flex gap-3 items-center">
+      <div className="sticky bottom-0 mt-5 top-auto z-99 flex flex-col gap-2 h-fit bg-white border border-gray-600 lg:bg-white rounded-sm w-full mb-9 p-5 lg:items-start">
+        <div className="flex gap-3 items-center lg:justify-start lg:items-start lg:w-full">
           <Typography
             variant="subtitle2"
             color="blue-gray"
@@ -54,7 +54,7 @@ export const Cart = () => {
           placeholder="Comprar"
           className="px-4 py-3 min-w-44 h-fit bg-main"
         >
-          <Link to="/checkout" className="text-white">
+          <Link to="/checkout" className="text-white lg:self-end">
             Realizar pedido
           </Link>
         </Button>

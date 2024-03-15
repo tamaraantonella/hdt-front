@@ -14,6 +14,7 @@ import { ProductProps } from "./products.types";
 export const Products: React.FC<ProductProps> = ({
   response: products,
   isLoading,
+  isStoreOpen,
 }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] =
@@ -48,6 +49,14 @@ export const Products: React.FC<ProductProps> = ({
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!isStoreOpen) {
+    return (
+      <Box>
+        <h1>Lo sentimos, la tienda se encuentra cerrada.</h1>
+      </Box>
+    );
   }
 
   return (

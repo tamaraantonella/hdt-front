@@ -5,6 +5,7 @@ export interface IProductDataProvider {
     isLoading: boolean;
     response?: CollectionProducts[];
     error: Error | null;
+    isStoreOpen: boolean;
   }) => React.ReactNode;
 }
 
@@ -12,6 +13,7 @@ export interface ProductProps {
   isLoading: boolean;
   response?: CollectionProducts[];
   error: Error | null;
+  isStoreOpen: boolean;
 }
 
 export interface Category {
