@@ -14,7 +14,7 @@ export const CartWidget = () => {
       <a href="/cart">
         <ShoppingCartIcon className=" h-6 w-6 text-slate-500" />
         <p className="absolute top-0 right-0 bg-green-600 text-white px-1 rounded-full">
-          {cartLength > 9 ? "9+" : cartLength}
+          {cartLength > 9 ? "9+" : cartLength === 0 ? "" : cartLength}
         </p>
       </a>
     </Button>
