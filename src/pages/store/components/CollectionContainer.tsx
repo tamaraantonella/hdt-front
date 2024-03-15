@@ -13,7 +13,7 @@ export const CollectionContainer: React.FC<CollectionContainerProps> = ({
       {collections.map((collection) => (
         <CollectionCard key={collection.id} collection={collection} />
       ))}
-      <CollectionCard key="all" collection="all"/>
+      <CollectionCard key="all" collection="all" />
     </div>
   );
 };

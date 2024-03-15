@@ -17,8 +17,12 @@ const defaultImg =
 export const CollectionCard: React.FC<CollectionCardProps> = ({
   collection,
 }) => {
-
-  const imageUrl = collection === "all" ? defaultImg : collection.imageUrl ? collection.imageUrl : defaultImg;
+  const imageUrl =
+    collection === "all"
+      ? defaultImg
+      : collection.imageUrl
+        ? collection.imageUrl
+        : defaultImg;
   return (
     <Link
       to={

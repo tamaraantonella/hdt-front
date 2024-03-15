@@ -1,4 +1,4 @@
-import { isStoreOpen } from './../../utils/utils';
+import { isStoreOpen } from "./../../utils/utils";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
@@ -16,8 +16,7 @@ const StoreDataProvider: React.FC<IStoreDataProvider> = ({ children }) => {
       request<FetchWrapper<Collection>>({ url: "/collections", method: "GET" }),
     staleTime: 1000 * 60 * 5,
     enabled: !!isStoreOpenValue,
-  },);
-
+  });
 
   return children({
     isLoading,

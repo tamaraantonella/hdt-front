@@ -11,13 +11,10 @@ export const Contact = () => {
       />
 
       <div className="mb-5">
-        <Typography
-          color="gray"
-          className="text-xl font-bold lg:text-2xl"
-        >
+        <Typography color="gray" className="text-xl font-bold lg:text-2xl">
           Consultas por whatsapp
         </Typography>
-        <Typography  variant="small">
+        <Typography variant="small">
           <div>
             <img
               src="../../../public/wp.png"
@@ -35,14 +32,10 @@ export const Contact = () => {
         </Typography>
       </div>
       <div className="w-full flex flex-col">
-        <Typography
-
-          color="gray"
-          className="text-xl font-bold lg:text-2xl"
-        >
+        <Typography color="gray" className="text-xl font-bold lg:text-2xl">
           Ubicación
         </Typography>
-        <Typography  variant="small" className="mb-5">
+        <Typography variant="small" className="mb-5">
           <a
             className="pointer text- hover:text-main-dark transition-all duration-300"
             href="https://maps.app.goo.gl/5eCSNy9eSrrUi67y7"

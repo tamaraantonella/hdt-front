@@ -2,7 +2,7 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Typography
+  Typography,
 } from "@material-tailwind/react";
 import { PageTitle } from "../../components/PageTitle";
 

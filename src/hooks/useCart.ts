@@ -19,7 +19,7 @@ export const useCart = () => {
         (cartItem) => cartItem.product.id === product.id
       );
       if (!currentCartItem) {
-        setCart([...cart, { product, quantity:1 }]);
+        setCart([...cart, { product, quantity: 1 }]);
       } else {
         const newCart = cart.map((cartItem) => {
           if (cartItem.product.id === product.id) {

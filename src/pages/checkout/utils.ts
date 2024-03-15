@@ -21,7 +21,7 @@ export const parseCartToCheckout = (
   };
 };
 
-export  const generateOrderSummaryMessage = (
+export const generateOrderSummaryMessage = (
   cart: CartAtom[],
   orderId: number,
   user_name: string,

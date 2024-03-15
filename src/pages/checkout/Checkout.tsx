@@ -112,7 +112,12 @@ export const Checkout: React.FC = () => {
                 </span>
               )}
             </div>
-            <Button placeholder="button" className="mt-6" fullWidth type="submit">
+            <Button
+              placeholder="button"
+              className="mt-6"
+              fullWidth
+              type="submit"
+            >
               Confirmar pedido
             </Button>
           </form>

@@ -2,7 +2,7 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Typography
+  Typography,
 } from "@material-tailwind/react";
 import { Banner } from "../../components/Banner";
 
