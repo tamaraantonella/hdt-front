@@ -10,55 +10,55 @@ import { Cart } from "@/pages/cart";
 import { Checkout } from "@/pages/checkout";
 
 export const Routes: RouteObject[] = [
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/us",
-    element: <Us />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/store",
-    element: (
-      <StoreDataProvider>
-        {({ error, isLoading, response, isStoreOpen }) => (
-          <Store
-            isLoading={isLoading}
-            response={response}
-            error={error}
-            isStoreOpen={isStoreOpen}
-          />
-        )}
-      </StoreDataProvider>
-    ),
-  },
+	{
+		path: "/",
+		element: <Home />,
+	},
+	{
+		path: "/us",
+		element: <Us />,
+	},
+	{
+		path: "/contact",
+		element: <Contact />,
+	},
+	{
+		path: "/store",
+		element: (
+			<StoreDataProvider>
+				{({ error, isLoading, response, isStoreOpen }) => (
+					<Store
+						isLoading={isLoading}
+						response={response}
+						error={error}
+						isStoreOpen={isStoreOpen}
+					/>
+				)}
+			</StoreDataProvider>
+		),
+	},
 
-  {
-    path: "/products/collection/:id",
-    element: (
-      <ProductsDataProvider>
-        {({ error, isLoading, response, isStoreOpen }) => (
-          <Products
-            isLoading={isLoading}
-            response={response}
-            error={error}
-            isStoreOpen={isStoreOpen}
-          />
-        )}
-      </ProductsDataProvider>
-    ),
-  },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
+	{
+		path: "/products/collection/:id",
+		element: (
+			<ProductsDataProvider>
+				{({ error, isLoading, response, isStoreOpen }) => (
+					<Products
+						isLoading={isLoading}
+						response={response}
+						error={error}
+						isStoreOpen={isStoreOpen}
+					/>
+				)}
+			</ProductsDataProvider>
+		),
+	},
+	{
+		path: "/cart",
+		element: <Cart />,
+	},
+	{
+		path: "/checkout",
+		element: <Checkout />,
+	},
 ];

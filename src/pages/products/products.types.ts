@@ -1,40 +1,40 @@
 import { CollectionProducts } from "@/utils/types";
 
 export interface IProductDataProvider {
-  children: (data: {
-    isLoading: boolean;
-    response?: CollectionProducts[];
-    error: Error | null;
-    isStoreOpen: boolean;
-  }) => React.ReactNode;
+	children: (data: {
+		isLoading: boolean;
+		response?: CollectionProducts[];
+		error: Error | null;
+		isStoreOpen: boolean;
+	}) => React.ReactNode;
 }
 
 export interface ProductProps {
-  isLoading: boolean;
-  response?: CollectionProducts[];
-  error: Error | null;
-  isStoreOpen: boolean;
+	isLoading: boolean;
+	response?: CollectionProducts[];
+	error: Error | null;
+	isStoreOpen: boolean;
 }
 
 export interface Category {
-  id: string;
-  name: string;
-  color: string;
-  createdAt: Date;
-  modifiedAt: Date;
-  deletedAt: Date | null;
-  products: Product[];
+	id: string;
+	name: string;
+	color: string;
+	createdAt: Date;
+	modifiedAt: Date;
+	deletedAt: Date | null;
+	products: Product[];
 }
 
 export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  stock: boolean;
-  saleUnit: string;
-  price: number;
-  image: null;
-  createdAt: Date;
-  modifiedAt: Date;
-  deletedAt: null;
+	id: string;
+	name: string;
+	description: string;
+	stock: boolean;
+	saleUnit: string;
+	price: number;
+	image: null;
+	createdAt: Date;
+	modifiedAt: Date;
+	deletedAt: null;
 }
