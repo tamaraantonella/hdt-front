@@ -26,8 +26,13 @@ export const Routes: RouteObject[] = [
     path: "/store",
     element: (
       <StoreDataProvider>
-        {({ error, isLoading, response }) => (
-          <Store isLoading={isLoading} response={response} error={error} />
+        {({ error, isLoading, response, isStoreOpen }) => (
+          <Store
+            isLoading={isLoading}
+            response={response}
+            error={error}
+            isStoreOpen={isStoreOpen}
+          />
         )}
       </StoreDataProvider>
     ),
@@ -37,18 +42,23 @@ export const Routes: RouteObject[] = [
     path: "/products/collection/:id",
     element: (
       <ProductsDataProvider>
-        {({ error, isLoading, response }) => (
-          <Products isLoading={isLoading} response={response} error={error} />
+        {({ error, isLoading, response, isStoreOpen }) => (
+          <Products
+            isLoading={isLoading}
+            response={response}
+            error={error}
+            isStoreOpen={isStoreOpen}
+          />
         )}
       </ProductsDataProvider>
     ),
   },
   {
     path: "/cart",
-    element: <Cart/>
+    element: <Cart />,
   },
   {
     path: "/checkout",
-    element: <Checkout />
-  }
+    element: <Checkout />,
+  },
 ];
