@@ -32,11 +32,11 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
 			}
 			key={collection === "all" ? "all" : collection.id}
 		>
-			<Card placeholder={undefined} className="mt-6 w-96 h-52 lg:w-80">
+			<Card placeholder={undefined} className="mt-10 w-80 h-52 shadow-2xl lg:w-80">
 				<CardHeader
 					placeholder={undefined}
 					color="blue-gray"
-					className="relative h-56 "
+					className="relative h-56"
 				>
 					<img
 						src={imageUrl}
