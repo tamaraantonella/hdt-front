@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import AOS from "aos";
 
-export const Banner=() => {
+export const Banner = () => {
 	useEffect(() => {
 		AOS.init({ duration: 2000 });
 	});

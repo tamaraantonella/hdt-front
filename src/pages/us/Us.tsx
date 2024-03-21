@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import AOS from "aos";
 
-export const Us=() => {
+export const Us = () => {
 	useEffect(() => {
 		AOS.init({ duration: 2000 });
 	});

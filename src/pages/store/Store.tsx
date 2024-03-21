@@ -12,9 +12,9 @@ export const Store: React.FC<StoreProps> = ({
 	isLoading,
 	isStoreOpen,
 }) => {
-		useEffect(() => {
-			AOS.init({ duration: 2000 });
-		});
+	useEffect(() => {
+		AOS.init({ duration: 2000 });
+	});
 
 	if (!isStoreOpen) {
 		return (

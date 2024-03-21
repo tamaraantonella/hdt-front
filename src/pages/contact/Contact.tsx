@@ -44,7 +44,11 @@ export const Contact = () => {
 					>
 						Ubicación
 					</Typography>
-					<Typography placeholder="contact" variant="small" className="mb-5 md:mb-0">
+					<Typography
+						placeholder="contact"
+						variant="small"
+						className="mb-5 md:mb-0"
+					>
 						<a
 							className="pointer text- hover:text-main-dark transition-all duration-300"
 							href="https://maps.app.goo.gl/5eCSNy9eSrrUi67y7"

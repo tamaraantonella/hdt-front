@@ -114,7 +114,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 					</Typography>
 				</div>
 			</CardBody>
-			<CardFooter placeholder="product footer" className="pt-0 flex gap-2 h-20 w-full">
+			<CardFooter
+				placeholder="product footer"
+				className="pt-0 flex gap-2 h-20 w-full"
+			>
 				{isAddToCartPressed ? (
 					<QuantityButton
 						key={product.id}
