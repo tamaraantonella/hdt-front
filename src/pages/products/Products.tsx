@@ -90,8 +90,7 @@ export const Products: React.FC<ProductProps> = ({
 					</FormControl>
 				</Box>
 			)}
-
-			<div className="lg:grid lg:grid-cols-3 md:flex md:flex-col gap-5 md:flex-row md:flex-wrap grid grid-cols-2">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
 				{filteredProducts.length > 0 && (
 					<>
 						{filteredProducts.map((product) => (

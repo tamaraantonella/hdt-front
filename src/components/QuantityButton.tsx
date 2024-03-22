@@ -53,7 +53,7 @@ export const QuantityButton: React.FC<QuantityButtonProps> = ({
 		<div className="flex items-center gap-2">
 			<Button
 				placeholder="+ button"
-				className="bg-white text-main font-bold h-fit w-fit px-2 py-1"
+				className="bg-white text-main font-bold h-fit w-fit px-2 py-1 text-lg"
 				ripple={false}
 				variant="text"
 				fullWidth={false}
@@ -61,13 +61,18 @@ export const QuantityButton: React.FC<QuantityButtonProps> = ({
 			>
 				-
 			</Button>
-			<Typography placeholder={product.name} variant="small" color="blue-gray">
+			<Typography
+				placeholder={product.name}
+				variant="small"
+				color="blue-gray"
+				className=" text-lg"
+			>
 				{product.saleUnit === "g" ? quantity * 100 : quantity}{" "}
 				{showUnit ? saleUnits : "en tu carrito"}
 			</Typography>
 			<Button
 				placeholder="+ button"
-				className="bg-white text-main font-bold h-fit w-fit px-2 py-1"
+				className="bg-white text-main font-bold h-fit w-fit px-2 py-1 text-lg"
 				variant="text"
 				ripple={false}
 				fullWidth={false}

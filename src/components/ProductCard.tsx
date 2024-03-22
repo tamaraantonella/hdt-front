@@ -10,12 +10,17 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useMemo, useState } from "react";
 import { QuantityButton } from "./QuantityButton";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 interface ProductCardProps {
 	product: CollectionProducts;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+	useEffect(() => {
+		AOS.init({ duration: 2000 });
+	});
 	const { updateCartItemQuantity, cart, addProduct } = useCart();
 	const itemInCart = cart.find((item) => item.product.id === product.id);
 	const [quantity, setQuantity] = useState(0);
@@ -53,7 +58,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 		<Card
 			key={product.id}
 			placeholder={product.name}
-			className="md:w-64 lg:w-80 w-full relative"
+			className="md:w-full lg:w-80 w-full relative"
+			data-aos="fade-up"
 		>
 			{!product.stock && (
 				<div className="w-full h-full absolute bg-black/80">
@@ -95,7 +101,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 						placeholder={product.name}
 						variant="small"
 						color="gray"
-						className="font-normal opacity-75 truncate"
+						className="font-normal opacity-75 truncate h-6"
 					>
 						{product?.description}
 					</Typography>
@@ -108,7 +114,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 					</Typography>
 				</div>
 			</CardBody>
-			<CardFooter placeholder="product footer" className="pt-0 flex gap-2 h-24">
+			<CardFooter
+				placeholder="product footer"
+				className="pt-0 flex gap-2 h-20 w-full"
+			>
 				{isAddToCartPressed ? (
 					<QuantityButton
 						key={product.id}
@@ -122,7 +131,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 						placeholder="product button"
 						ripple={false}
 						fullWidth={true}
-						className="bg-green-900/10 text-green-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 text-xs md:text-base"
+						className=" bg-green-900/10 text-green-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 text-sm md:text-base"
 						onClick={handleAddToCart}
 						disabled={!product.stock}
 					>

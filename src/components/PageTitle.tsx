@@ -12,7 +12,7 @@ export const PageTitle: React.FC<SectionTitleProps> = ({
 	id,
 }) => {
 	return (
-		<div key={id} className="py-5 flex justify-center">
+		<div key={id} className="py-5 flex flex-col items-center">
 			<p className="uppercase text-main-dark text-2xl lg:text-4xl font-semibold">
 				{title}
 			</p>

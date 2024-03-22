@@ -124,17 +124,22 @@ export const Checkout: React.FC = () => {
 				</>
 			)}
 			{order && (
-				<Box>
-					<Typography variant="h6" className="mt-8">
+				<div className="flex flex-col gap-7 my-20">
+					<Typography variant="h6" className="mt-8 text-center">
 						Tu pedido ha sido confirmado
 					</Typography>
-					<Typography variant="body1" className="mt-2">
+					<Typography variant="body1" className="mt-8 text-center">
 						Tu número de pedido es: {order.id}
 					</Typography>
-					<Typography variant="body1" className="mt-2">
+					<Typography variant="body1" className="mt-2 text-center">
 						Te hemos redirigido a WhatsApp para finalizar la reserva
 					</Typography>
-				</Box>
+					<img
+						src="https://www.petaindia.com/wp-content/uploads/2020/09/broccoli-carrot-hug-HAVD-2020-GIF-2.gif"
+						alt="fruit"
+						className=" mt-6"
+					/>
+				</div>
 			)}
 		</Box>
 	);

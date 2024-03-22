@@ -1,8 +1,14 @@
 import { Carousel } from "@material-tailwind/react";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const Banner = () => {
+	useEffect(() => {
+		AOS.init({ duration: 2000 });
+	});
 	return (
-		<div className="relative w-full">
+		<div className="relative w-full" data-aos="fade-up">
 			<Carousel placeholder="carousel" className="rounded-xl h-[28rem]">
 				<img
 					src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1662129293/delTomate/banner_ubxf59.jpg"
