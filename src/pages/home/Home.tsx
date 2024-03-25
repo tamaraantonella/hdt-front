@@ -4,10 +4,10 @@ import {
 	CardHeader,
 	Typography,
 } from "@material-tailwind/react";
-import { Banner } from "../../components/Banner";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-import AOS from "aos";
+import { Banner } from "../../components/Banner";
 
 export const Home = () => {
 	useEffect(() => {
@@ -98,7 +98,7 @@ export const Home = () => {
 						floated={false}
 						shadow={false}
 						color="transparent"
-						className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('../../../public/letrero.jpeg')] bg-cover bg-center"
+						className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('https://res.cloudinary.com/dfbxjt69z/image/upload/v1662129293/delTomate/banner_ubxf59.jpg')] bg-cover bg-center"
 					>
 						<div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/95 via-black/80" />
 					</CardHeader>
