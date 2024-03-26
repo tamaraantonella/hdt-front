@@ -1,11 +1,11 @@
-import { cartAtom, orderSummaryAtom } from "@/utils/atoms";
+import { cartAtom, orderSummaryAtom } from "@/utils/atoms/atoms";
 import { CollectionProducts as Product } from "@/utils/types";
 import { atom, useAtom, useAtomValue } from "jotai";
 import { useCallback } from "react";
 
 export const cartItemsQuantityAtom = atom((get) => {
 	const cart = get(cartAtom);
-	return cart.reduce((total, cartItem) => total + cartItem.quantity, 0);
+	return cart.reduce((total) => total + 1, 0);
 });
 
 export const useCart = () => {
