@@ -1,4 +1,4 @@
-import { CartAtom } from "@/utils/atoms";
+import { CartAtom } from "@/utils/atoms/atoms";
 import { CreateOrder } from "@/utils/types";
 
 export const parseCartToCheckout = (
@@ -46,6 +46,5 @@ export const generateOrderSummaryMessage = (
 		`Hola soy *${user_name}*, mi orden de pedido es ${message}
       *TOTAL: $${total}*`,
 	);
-	const url = `${baseWhatsAppURL}phone=${phoneNumber}&text=${encodedMessage}`;
-	window.open(url, "_blank");
+	return `${baseWhatsAppURL}phone=${phoneNumber}&text=${encodedMessage}`;
 };

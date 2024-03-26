@@ -18,7 +18,8 @@ export const Checkout: React.FC = () => {
 	const { cart, clearCart, orderSummary } = useCart();
 	const { request } = useApiRequest();
 	const [order, setOrder] = useState<Order | null>(null);
-
+	const [currentCart] = useState(cart);
+	let redirectWhatsAppUrl: string = "";
 	const {
 		register,
 		handleSubmit,
@@ -45,7 +46,13 @@ export const Checkout: React.FC = () => {
 			}),
 		onSuccess: (order) => {
 			setOrder(order);
-			generateOrderSummaryMessage(cart, order.id, order.user_name, order.total);
+			redirectWhatsAppUrl = generateOrderSummaryMessage(
+				cart,
+				order.id,
+				order.user_name,
+				order.total,
+			);
+			window.open(redirectWhatsAppUrl, "_blank");
 			clearCart();
 		},
 	});
@@ -54,7 +61,7 @@ export const Checkout: React.FC = () => {
 		if (!cart.length && !order) {
 			window.location.href = "/";
 		}
-	}, [cart.length]);
+	}, [cart.length, redirectWhatsAppUrl, order, redirectWhatsAppUrl]);
 	return (
 		<Box>
 			{isLoading && <Spinner />}
@@ -132,7 +139,23 @@ export const Checkout: React.FC = () => {
 						Tu número de pedido es: {order.id}
 					</Typography>
 					<Typography variant="body1" className="mt-2 text-center">
-						Te hemos redirigido a WhatsApp para finalizar la reserva
+						Te redirigimos a WhatsApp para finalizar la reserva.
+					</Typography>
+					<Typography variant="body1" className="mt-2 text-center">
+						Si no se abre automáticamente, hacé click{" "}
+						<a
+							href={generateOrderSummaryMessage(
+								currentCart,
+								order.id,
+								order.user_name,
+								order.total,
+							)}
+							target="_blank"
+							rel="noreferrer"
+							className="text-blue-500"
+						>
+							acá
+						</a>
 					</Typography>
 					<img
 						src="https://www.petaindia.com/wp-content/uploads/2020/09/broccoli-carrot-hug-HAVD-2020-GIF-2.gif"
