@@ -18,6 +18,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useDisplayedRows from "./hooks/useDisplayedProducts";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
+import { Spinner } from "@material-tailwind/react";
 
 export const Products: React.FC = () => {
 	const [categories, setCategories] = useState<string[]>([]);
@@ -65,6 +66,9 @@ export const Products: React.FC = () => {
 				<h1>Lo sentimos, la tienda se encuentra cerrada.</h1>
 			</Box>
 		);
+	}
+	if (!loaderResponse.data) {
+		return <Spinner />;
 	}
 
 	return (

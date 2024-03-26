@@ -9,6 +9,7 @@ import { useLoaderData } from "react-router-dom";
 import { CollectionContainer } from "./components/CollectionContainer";
 import { useSetAtom } from "jotai";
 import { writeOnlyCollectionsAtom } from "@/utils/atoms/collections-atom";
+import { Spinner } from "@material-tailwind/react";
 
 export const Store: React.FC = () => {
 	const isStore = isStoreOpen();
@@ -33,7 +34,7 @@ export const Store: React.FC = () => {
 						Los pedidos en la tienda se pueden hacer:
 					</Typography>
 					<Typography variant="subtitle1">
-						👉​Los días lunes para retirar los días miércoles
+						👉 ​Los días lunes para retirar los días miércoles
 					</Typography>
 					<Typography variant="subtitle1">
 						👉Los días jueves para retirar los días sabados
@@ -45,8 +46,10 @@ export const Store: React.FC = () => {
 	return (
 		<div data-aos="fade-up" className="flex flex-col">
 			<PageTitle title="Tienda" id="productos" />
-			{loaderResponse.data?.data && (
+			{loaderResponse.data?.data ? (
 				<CollectionContainer collections={loaderResponse.data.data} />
+			) : (
+				<Spinner />
 			)}
 		</div>
 	);
