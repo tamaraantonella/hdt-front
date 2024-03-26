@@ -1,22 +1,24 @@
+import axios from "@/axios-config";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { Cart } from "@/pages/cart";
+import { Checkout } from "@/pages/checkout";
 import { Products } from "@/pages/products";
-import ProductsDataProvider from "@/pages/products/ProductsDataProvider";
 import { RouteObject } from "react-router-dom";
 import { Contact } from "../pages/contact";
 import { Home } from "../pages/home";
 import { Store } from "../pages/store/Store";
-import StoreDataProvider from "../pages/store/StoreDataProvider";
 import { Us } from "../pages/us";
-import { Cart } from "@/pages/cart";
-import { Checkout } from "@/pages/checkout";
 
 export const Routes: RouteObject[] = [
 	{
 		path: "/",
 		element: <Home />,
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		path: "/us",
 		element: <Us />,
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		path: "/contact",
@@ -24,41 +26,35 @@ export const Routes: RouteObject[] = [
 	},
 	{
 		path: "/store",
-		element: (
-			<StoreDataProvider>
-				{({ error, isLoading, response, isStoreOpen }) => (
-					<Store
-						isLoading={isLoading}
-						response={response}
-						error={error}
-						isStoreOpen={isStoreOpen}
-					/>
-				)}
-			</StoreDataProvider>
-		),
+		element: <Store />,
+		loader: () => {
+			return axios.request({
+				url: "/collections",
+				method: "GET",
+			});
+		},
+		errorElement: <ErrorBoundary />,
 	},
-
 	{
 		path: "/products/collection/:id",
-		element: (
-			<ProductsDataProvider>
-				{({ error, isLoading, response, isStoreOpen }) => (
-					<Products
-						isLoading={isLoading}
-						response={response}
-						error={error}
-						isStoreOpen={isStoreOpen}
-					/>
-				)}
-			</ProductsDataProvider>
-		),
+		element: <Products />,
+		loader: ({ params }) => {
+			return axios.request({
+				url: `/products/collection`,
+				method: "GET",
+				params: { collectionId: params.id },
+			});
+		},
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		path: "/cart",
 		element: <Cart />,
+		errorElement: <ErrorBoundary />,
 	},
 	{
 		path: "/checkout",
 		element: <Checkout />,
+		errorElement: <ErrorBoundary />,
 	},
 ];
