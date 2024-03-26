@@ -22,22 +22,35 @@ export const QuantityButton: React.FC<QuantityButtonProps> = ({
 
 	const handleIncreaseQuantity = () => {
 		setQuantity((prev) => {
-			const newQuantity = prev + 1;
-			updateCartItemQuantity(product, newQuantity);
-			return newQuantity;
+			let newQty: number;
+			if (product.saleUnit === "kg") {
+				newQty = prev + 0.5;
+			} else {
+				newQty = prev + 1;
+			}
+			updateCartItemQuantity(product, newQty);
+			return newQty;
 		});
 	};
 
 	const handleDecreaseQuantity = () => {
-		if (quantity === 1) {
+		if (
+			(product.saleUnit === "kg" && quantity === 0.5) ||
+			(product.saleUnit !== "kg" && quantity === 1)
+		) {
 			if (setIsAddToCartPressed) setIsAddToCartPressed(false);
 			removeProduct(product);
 			return;
 		}
 		setQuantity((prev) => {
-			const newQuantity = prev - 1;
-			updateCartItemQuantity(product, newQuantity);
-			return newQuantity;
+			let newQty: number;
+			if (product.saleUnit === "kg") {
+				newQty = prev - 0.5;
+			} else {
+				newQty = prev - 1;
+			}
+			updateCartItemQuantity(product, newQty);
+			return newQty;
 		});
 	};
 	const saleUnits = useMemo(() => {
@@ -61,12 +74,7 @@ export const QuantityButton: React.FC<QuantityButtonProps> = ({
 			>
 				-
 			</Button>
-			<Typography
-				placeholder={product.name}
-				variant="small"
-				color="blue-gray"
-				className=" text-lg"
-			>
+			<Typography placeholder={product.name} variant="small" color="blue-gray">
 				{product.saleUnit === "g" ? quantity * 100 : quantity}{" "}
 				{showUnit ? saleUnits : "en tu carrito"}
 			</Typography>

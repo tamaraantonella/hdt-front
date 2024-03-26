@@ -1,5 +1,6 @@
 import { useCart } from "@/hooks/useCart";
 import { CollectionProducts } from "@/utils/types";
+import { getSaleUnit } from "@/utils/utils";
 import {
 	Button,
 	Card,
@@ -8,10 +9,10 @@ import {
 	CardHeader,
 	Typography,
 } from "@material-tailwind/react";
-import { useEffect, useMemo, useState } from "react";
-import { QuantityButton } from "./QuantityButton";
-import "aos/dist/aos.css";
 import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect, useState } from "react";
+import { QuantityButton } from "./QuantityButton";
 
 interface ProductCardProps {
 	product: CollectionProducts;
@@ -19,7 +20,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 	useEffect(() => {
-		AOS.init({ duration: 2000 });
+		AOS.init({ duration: 1000 });
 	});
 	const { updateCartItemQuantity, cart, addProduct } = useCart();
 	const itemInCart = cart.find((item) => item.product.id === product.id);
@@ -29,22 +30,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 	const handleAddToCart = () => {
 		setIsAddToCartPressed(true);
 		addProduct(product);
-		setQuantity(1);
+		if (product.saleUnit === "kg") setQuantity(0.5);
+		else setQuantity(1);
 	};
 
 	const img = product.imageUrl
 		? product.imageUrl
 		: "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662125764/delTomate/deltomate-logo_pxslmj.png";
-
-	const saleUnits = useMemo(() => {
-		if (product.saleUnit === "kg") {
-			return "x kg";
-		}
-		if (product.saleUnit === "g") {
-			return "x 100g";
-		}
-		return "x 1";
-	}, [product.saleUnit]);
 
 	useEffect(() => {
 		if (itemInCart) {
@@ -94,7 +86,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 							placeholder={product.name}
 							className="font-bold text-sm"
 						>
-							{saleUnits !== "x 1" && saleUnits}
+							{getSaleUnit(product.saleUnit) !== "unid." &&
+								getSaleUnit(product.saleUnit)}
 						</Typography>
 					</div>
 					<Typography
@@ -103,6 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 						color="gray"
 						className="font-normal opacity-75 truncate h-6"
 					>
+						{""}
 						{product?.description}
 					</Typography>
 					<Typography
@@ -125,6 +119,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 						setQuantity={setQuantity}
 						product={product}
 						setIsAddToCartPressed={setIsAddToCartPressed}
+						showUnit={true}
 					/>
 				) : (
 					<Button

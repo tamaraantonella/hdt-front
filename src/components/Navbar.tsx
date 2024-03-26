@@ -7,10 +7,11 @@ import {
 import React from "react";
 import { navLinks } from "../constants";
 import { CartWidget } from "./CartWidget";
+import { isStoreOpen } from "@/utils/utils";
 
 export const Navbar = () => {
 	const [openNav, setOpenNav] = React.useState(false);
-
+	const isStore = isStoreOpen();
 	React.useEffect(() => {
 		window.addEventListener(
 			"resize",
@@ -46,15 +47,17 @@ export const Navbar = () => {
 			>
 				<div className="flex w-full items-center justify-between text-blue-gray-900">
 					<div className="h-12 w-12">
-						<img
-							className="h-full object-cover object-center"
-							src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1662125764/delTomate/deltomate-logo_pxslmj.png"
-							alt="logo"
-						/>
+						<a href="/">
+							<img
+								className="h-full object-cover object-center"
+								src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1662125764/delTomate/deltomate-logo_pxslmj.png"
+								alt="logo"
+							/>
+						</a>
 					</div>
 					<div className="flex items-center gap-4 ">
 						<div className="mr-4 hidden lg:flex justify-end">{navList}</div>
-						<CartWidget />
+						{isStore ? <CartWidget /> : null}
 						<IconButton
 							placeholder="icon button"
 							variant="text"
