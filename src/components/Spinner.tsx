@@ -5,7 +5,7 @@ export const Spinner = () => {
 		<div className="flex w-full mx-0 h-screen items-center justify-center flex-col">
 			<img
 				className="w-60 h-60 object-contain"
-				src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1711380834/delTomate/giphy_ctf22z.gif"
+				src="../../public/giphy.gif"
 				alt="Cargando..."
 			/>
 			<Link
