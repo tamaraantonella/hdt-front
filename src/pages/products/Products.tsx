@@ -1,57 +1,65 @@
 import { ProductCard } from "@/components/ProductCard";
-import { Spinner } from "@/components/Spinner";
+import {
+	filterCollectionProductsByCategoryAtom,
+	writeOnlySetInitialCollectionProductsAtom,
+} from "@/utils/atoms/collection-products-atom";
 import { Category, CollectionProducts } from "@/utils/types";
+import { isStoreOpen } from "@/utils/utils";
 import {
 	Box,
+	Button,
 	FormControl,
 	MenuItem,
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
+import { useSetAtom } from "jotai";
 import React, { useEffect, useState } from "react";
-import { ProductProps } from "./products.types";
+import { useLoaderData } from "react-router-dom";
+import useDisplayedRows from "./hooks/useDisplayedProducts";
+import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
-export const Products: React.FC<ProductProps> = ({
-	response: products,
-	isLoading,
-	isStoreOpen,
-}) => {
+export const Products: React.FC = () => {
 	const [categories, setCategories] = useState<string[]>([]);
 	const [selectedCategory, setSelectedCategory] =
 		useState<Category["name"]>("all");
-	const [filteredProducts, setFilteredProducts] = useState<
-		CollectionProducts[]
-	>([]);
+	const [orderSort, setOrderSort] = useState<string>("asc");
+	const filterProductsByCategory = useSetAtom(
+		filterCollectionProductsByCategoryAtom,
+	);
+	const loaderResponse = useLoaderData() as { data: CollectionProducts[] };
+	const productsToDisplay = useDisplayedRows(orderSort);
+
+	const setInitialCollectionProducts = useSetAtom(
+		writeOnlySetInitialCollectionProductsAtom,
+	);
+	const isOpenValue = isStoreOpen();
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setSelectedCategory(event.target.value as string);
 		if (event.target.value === "all") {
-			setFilteredProducts([]);
+			filterProductsByCategory(null);
 			return;
 		}
-		if (products) {
-			const filteredProducts = products.filter(
-				(product) => product.category.name === event.target.value,
-			);
-			setFilteredProducts(filteredProducts);
-		}
+		filterProductsByCategory(event.target.value);
+	};
+
+	const handleSort = (event: SelectChangeEvent) => {
+		setOrderSort(event.target.value as string);
 	};
 
 	useEffect(() => {
-		if (products) {
-			const categories = products.map((product) => product.category);
+		if (categories.length === 0) {
+			setInitialCollectionProducts(loaderResponse.data);
+			const categories = loaderResponse.data.map((product) => product.category);
 			const uniqueCategories = Array.from(
 				new Set(categories.map((category) => category.name)),
 			);
 			setCategories(uniqueCategories);
 		}
-	}, [products]);
+	}, [orderSort, productsToDisplay, selectedCategory, orderSort]);
 
-	if (isLoading) {
-		return <Spinner />;
-	}
-
-	if (!isStoreOpen) {
+	if (!isOpenValue) {
 		return (
 			<Box>
 				<h1>Lo sentimos, la tienda se encuentra cerrada.</h1>
@@ -61,8 +69,22 @@ export const Products: React.FC<ProductProps> = ({
 
 	return (
 		<>
-			{categories && (
-				<Box display="flex" margin="20px 0px">
+			<div className="flex justify-end">
+				<Button
+					variant="contained"
+					sx={{
+						backgroundColor: "#56694b",
+						color: "#ffffff",
+						":hover": { backgroundColor: "#2e4c16" },
+						width: "fit-content",
+					}}
+					onClick={() => window.history.back()}
+				>
+					<ArrowLeftIcon className="h-4 mr-3" /> Volver
+				</Button>
+			</div>
+			{categories.length > 0 && (
+				<Box display="grid" margin="20px 0px">
 					<FormControl
 						fullWidth
 						sx={{ minWidth: 120, maxWidth: 350 }}
@@ -88,22 +110,36 @@ export const Products: React.FC<ProductProps> = ({
 							))}
 						</Select>
 					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ minWidth: 120, maxWidth: 350 }}
+						variant="standard"
+					>
+						<Select
+							id="order-sort"
+							value={orderSort}
+							onChange={handleSort}
+							className="w-full capitalize"
+						>
+							<MenuItem value="asc" sx={{ textTransform: "capitalize" }}>
+								Orden A-Z
+							</MenuItem>
+							<MenuItem value="desc" sx={{ textTransform: "capitalize" }}>
+								Orden Z-A
+							</MenuItem>
+						</Select>
+					</FormControl>
 				</Box>
 			)}
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-				{filteredProducts.length > 0 && (
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 min-h-screen">
+				{productsToDisplay.length > 0 ? (
 					<>
-						{filteredProducts.map((product) => (
+						{productsToDisplay.map((product) => (
 							<ProductCard key={product.id} product={product} />
 						))}
 					</>
-				)}
-				{products && !filteredProducts.length && (
-					<>
-						{products.map((product) => (
-							<ProductCard key={product.id} product={product} />
-						))}
-					</>
+				) : (
+					<h5>No hay productos para mostrar.</h5>
 				)}
 			</div>
 		</>

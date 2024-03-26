@@ -27,7 +27,7 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
 		<Link
 			to={
 				collection === "all"
-					? "/products/collection"
+					? "/products/collection/all"
 					: `/products/collection/${collection.id}`
 			}
 			key={collection === "all" ? "all" : collection.id}
