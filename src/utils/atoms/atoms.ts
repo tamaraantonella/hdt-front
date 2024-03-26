@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { CollectionProducts as Product } from "./types";
+import { CollectionProducts as Product } from "../types";
 import { atomWithStorage } from "jotai/utils";
 
 export interface CartAtom {
