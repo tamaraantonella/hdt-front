@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Banner } from "../../components/Banner";
+import { Button } from "@mui/material";
 
 export const Home = () => {
 	useEffect(() => {
@@ -16,7 +17,7 @@ export const Home = () => {
 	return (
 		<div>
 			<Banner />
-			<div className="flex flex-col items-center w-full justify-center my-5 mx-auto max-w-4xl text-center">
+			<div className="flex flex-col items-center w-full justify-center my-5 mx-auto max-w-3xl text-center">
 				<div data-aos="zoom-in-up" className="w-3/4 h-16 lg:h-28 mb-6">
 					<img
 						className="w-full h-full object-center object-contain"
@@ -27,25 +28,32 @@ export const Home = () => {
 
 				<p
 					data-aos="fade-up"
-					className="uppercase text-black/80 lg:text-2xl mb-3"
+					className="uppercase text-black/80 lg:text-xl mb-3"
 				>
 					Ahora podés seleccionar los productos que quieras y armar un pedido
 					que nos llega por whatsapp !
 				</p>
 				<p
 					data-aos="fade-up"
-					className="uppercase text-black/80 mb-3 lg:text-2xl"
+					className="uppercase text-black/80 mb-3 lg:text-xl"
 				>
 					👋 Por ese medio seguimos coordinando todo para que puedas pasar a
 					buscar tus productos!
 				</p>
 
-				<p data-aos="fade-up" className="text-sm text-black/60 ">
+				<p data-aos="fade-up" className="text-sm text-black/60">
 					Aclaración: el pedido es un estimativo, y se puede modificar. En el
 					caso que nos hayamos quedado sin stock te avisaremos por whatsapp al
 					solicitar el pedido, asimismo si querés agregar otro producto que no
 					esté en la lista, también nos lo podés pedir por whatsapp.
 				</p>
+				<Button
+					data-aos="fade-up"
+					href="/store"
+					sx={{ marginTop: "15px", fontSize: "16px" }}
+				>
+					👉 Visitá la tienda
+				</Button>
 			</div>
 			<div className="flex flex-col md:flex-row md:justify-around mt-16 gap-3">
 				<Card
